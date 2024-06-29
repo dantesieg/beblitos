@@ -69,6 +69,12 @@ RUN mkdir -p /var/lib/alternatives && \
 
 # RUN rpm-ostree override remove firefox firefox-langpacks dnf dnf5 dnf5-plugins mock mock-core-configs mock-filesystem yum dnf-plugins-core dnf-utils dnf-data python3-dnf python3-dnf-plugins-core libdnf libdnf5 libdnf5-cli python3-libdnf python3-hawkey && ostree container commit
 
+RUN find /var/cache/rpms
+
+FROM scratch
+
+COPY --from=builder /etc/rpms /rpms
+
 ## NOTES:
 # - /var/lib/alternatives is required to prevent failure with some RPM installs
 # - All RUN commands must end with ostree container commit
