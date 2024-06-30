@@ -28,9 +28,7 @@ rpm-ostree install \
     curl -L https://negativo17.org/repos/fedora-nvidia.repo -o /etc/yum.repos.d/fedora-nvidia.repo
 
     rpm-ostree install \
-        nvidia-driver \
-        nvidia-driver-libs.i686 \
-        nvidia-settings
+        akmod-nvidia \
 
 cd /tmp
 
