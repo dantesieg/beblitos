@@ -51,14 +51,14 @@ FROM quay.io/fedora-ostree-desktops/kinoite:40 AS builder
 
 RUN curl -Lo /usr/bin/copr https://raw.githubusercontent.com/ublue-os/COPR-command/main/copr && \
     chmod +x /usr/bin/copr && \
-    curl -s "https://copr.fedorainfracloud.org/coprs/g/kernel-vanilla/next/repo/fedora-rawhide/group_kernel-vanilla-next-fedora-rawhide.repo" | sudo tee "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:group_kernel-vanilla:next.repo" && \
+    curl -s "https://copr.fedorainfracloud.org/coprs/g/kernel-vanilla/mainline-wo-mergew/repo/fedora-rawhide/group_kernel-vanilla-mainline-wo-mergew-fedora-rawhide.repo" | sudo tee "/etc/yum.repos.d/_copr:copr.fedorainfracloud.org:group_kernel-vanilla:next.repo" && \
     curl -Lo /etc/yum.repos.d/tigro-better_fonts-fedora-40.repo https://copr.fedorainfracloud.org/coprs/tigro/better_fonts/repo/fedora-40/tigro-better_fonts-fedora-40.repo && \
     # curl -Lo /etc/yum.repos.d/whitehara-kernel-tkg-fedora-40.repo https://copr.fedorainfracloud.org/coprs/whitehara/kernel-tkg/repo/fedora-40/whitehara-kernel-tkg-fedora-40.repo && \
     ostree container commit
 
 RUN rpm-ostree cliwrap install-to-root /
 
-RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:group_kernel-vanilla:next' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
+RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:group_kernel-vanilla:mainline-wo-mergew' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 # RUN rpm-ostree override replace --experimental --from repo='copr:copr.fedorainfracloud.org:whitehara:kernel-tkg' kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && ostree container commit
 # RUN rpm-ostree install fontconfig-font-replacements fontconfig-enhanced-defaults distrobox && ostree container commit
 
