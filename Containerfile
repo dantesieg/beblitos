@@ -71,7 +71,7 @@ RUN mkdir -p /var/lib/alternatives && \
 
 RUN find /etc/rpms
 
-FROM scratch
+# FROM scratch
 
 COPY --from=builder /etc/rpms /rpms
 
