@@ -22,7 +22,7 @@ KERNEL="$(rpm -q kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 
 rpm-ostree install \
     akmods \
-    dnf \
+    dnf5 \
     mock
 
     curl -L https://negativo17.org/repos/fedora-nvidia.repo -o /etc/yum.repos.d/fedora-nvidia.repo
